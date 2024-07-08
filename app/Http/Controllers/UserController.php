@@ -13,9 +13,85 @@ class UserController extends Controller
     public function index()
     {
         // Lay danh sach toan bo user
-        $data = DB::table("users")->latest('id')->get();
+        $data = DB::table("users")
+            ->join("phongban", "phongban.id", "=", "users.phongban_id")
+            ->select("users.id", "users.name", "users.email", "users.phongban_id", "phongban.ten_donvi")
+            ->latest("id")
+            ->get();
         // dd($data);
         return view('welcome', compact("data"));
+    }
+
+    public function create()
+    {
+        $departments = DB::table("phongban")->select("id", "ten_donvi")
+            ->get();
+        return view("create", compact("departments"));
+    }
+
+    public function store(Request $request)
+    {
+        $data = $request->all();
+        // dd($data);
+
+        $request->validate(
+            [
+                "name" => "required",
+                "email" => "required",
+                "phongban_id" => "required",
+            ]
+        );
+
+        DB::table("users")->insert(
+            [
+                "name" => $data["name"],
+                "email" => $data["email"],
+                "phongban_id" => $data["phongban_id"],
+                "tuoi" => $data["age"],
+            ]
+        );
+
+        return redirect()->route("users.index");
+    }
+
+    public function edit(string $id)
+    {
+        $model = DB::table("users")->find($id);
+        $departments = DB::table("phongban")->select("id", "ten_donvi")
+            ->get();
+        // dd($model);
+        return view("edit", compact("model", "departments"));
+    }
+
+    public function update(Request $request, string $id)
+    {
+        $data = $request->all();
+        // dd($data);
+
+        $request->validate(
+            [
+                "name" => "required",
+                "email" => "required",
+                "phongban_id" => "required",
+            ]
+        );
+
+        DB::table("users")->where("id", $id)->update(
+            [
+                "name" => $data["name"],
+                "email" => $data["email"],
+                "phongban_id" => $data["phongban_id"],
+                "tuoi" => $data["age"],
+            ]
+        );
+
+        return redirect()->route("users.index");
+    }
+
+    public function destroy(string $id)
+    {
+        $model = DB::table("users")->where("id", $id)->delete();
+        return back();
     }
 
     // Lay 1
