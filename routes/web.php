@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PH33201Controller;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TinController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -15,6 +16,17 @@ Route::prefix("users")
         Route::get("/edit/{id}", [UserController::class, "edit"])->name("edit");
         Route::put("/update/{id}", [UserController::class, "update"])->name("update");
         Route::get("/destroy/{id}", [UserController::class, "destroy"])->name("destroy");
+    });
+
+Route::prefix("products")
+    ->as("products.")
+    ->group(function () {
+        Route::get("/", [ProductController::class, "index"])->name("index");
+        Route::get("/create", [ProductController::class, "create"])->name("create");
+        Route::post("/store", [ProductController::class, "store"])->name("store");
+        Route::get("/edit/{id}", [ProductController::class, "edit"])->name("edit");
+        Route::put("/update/{id}", [ProductController::class, "update"])->name("update");
+        Route::get("/destroy/{id}", [ProductController::class, "destroy"])->name("destroy");
     });
 
 
