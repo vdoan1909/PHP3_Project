@@ -35,3 +35,6 @@ Route::get("/ct/{id}", [TinController::class, "lay1tin"]);
 
 // Bai 3 lab 1
 Route::get("/ph33201", [PH33201Controller::class, "index"]);
+
+Route::get("/okok", [PH33201Controller::class, "admin"]);
+

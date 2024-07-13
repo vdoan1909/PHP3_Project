@@ -26,4 +26,9 @@ class PH33201Controller extends Controller
 
         return view("ph33201", compact("info"));
     }
+
+    public function admin()
+    {
+        return view("admin.index");
+    }
 }
