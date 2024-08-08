@@ -12,13 +12,15 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    const ROLE_ADMIN = "admin";
-    const ROLE_MEMBER = "member";
+    // const ROLE_ADMIN = "admin";
+    // const ROLE_MEMBER = "member";
 
     protected $fillable = [
         'name',
         'email',
         'password',
+        'address',
+        'phone'
     ];
 
     protected $hidden = [
@@ -29,4 +31,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    protected $primaryKey = "user_id";
 }

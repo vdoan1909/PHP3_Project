@@ -5,9 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ProductComment extends Model
+class Order extends Model
 {
     use HasFactory;
 
-    protected $table = "product_comment";
+    protected $fillable = [
+        'user_id',
+        'totalPrice'
+    ];
+    protected $primaryKey = "order_id";
+
 }

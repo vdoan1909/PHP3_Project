@@ -12,6 +12,7 @@
                     <th scope="col">STT</th>
                     <th scope="col">Tên sản phẩm</th>
                     <th scope="col">Giá sản phẩm</th>
+                    
                     <th scope="col">Mô tả</th>
                     <th scope="col">Hành động</th>
                 </tr>

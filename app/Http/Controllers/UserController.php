@@ -13,11 +13,11 @@ class UserController extends Controller
     public function index()
     {
         // Lay danh sach toan bo user
-        $data = DB::table("users")
-            ->join("phongban", "phongban.id", "=", "users.phongban_id")
-            ->select("users.id", "users.name", "users.email", "users.phongban_id", "phongban.ten_donvi")
-            ->latest("id")
-            ->get();
+        // $data = DB::table("users")
+        //     ->join("phongban", "phongban.id", "=", "users.phongban_id")
+        //     ->select("users.id", "users.name", "users.email", "users.phongban_id", "phongban.ten_donvi")
+        //     ->latest("id")
+        //     ->get();
         // dd($data);
         return view('welcome', compact("data"));
     }
